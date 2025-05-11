@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>母亲节快乐！</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ffb6c1, #ff69b4);
+            font-family: '微软雅黑', cursive;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 600px;
+            padding: 20px;
+        }
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 10px solid white;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        #mom-photo {
+            width: 100%;
+            transition: transform 0.3s;
+        }
+        #mom-photo:hover {
+            transform: scale(1.1);
+        }
+        .message {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px;
+            display: none;
+        }
+        button {
+            background: #ff1493;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        .hearts {
+            position: fixed;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            color: #ff0066;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ 母亲节快乐！❤️</h1>
+        
+        <!-- 点击照片显示信息 -->
+        <div class="photo-frame" onclick="showMessage()">
+            <img id="mom-photo" src="https://place-holder.example/mom.jpg" alt="妈妈的照片"> <!-- 替换为实际照片链接 -->
+        </div>
+
+        <div id="secret-message" class="message">
+            <h2>亲爱的妈妈：</h2>
+            <p id="custom-text">感谢您一直以来的爱与付出！❤️<br>您是世界上最好的妈妈！</p> <!-- 修改这里的文字 -->
+        </div>
+
+        <button onclick="addHearts()">点击收集爱心！</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('secret-message').style.display = 'block';
+            // 添加动画效果
+            setTimeout(() => {
+                document.querySelector('.message').style.transform = 'scale(1.05)';
+            }, 100);
+        }
+
+        function addHearts() {
+            // 创建飘落爱心
+            const hearts = document.createElement('div');
+            hearts.className = 'hearts';
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                hearts.appendChild(heart);
+            }
+            document.body.appendChild(hearts);
+            
+            // 收集5次后显示彩蛋
+             if (++clickCount >= 5) {
+                alert("🎉 彩蛋：妈妈，我永远爱您！🎉");
+                clickCount = 0;
+            }
+        }
+
+        let clickCount = 0;
+    </script>
+</body>
+</html>
